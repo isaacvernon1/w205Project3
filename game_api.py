@@ -21,6 +21,22 @@ def default_response():
 
 @app.route("/purchase_a_sword")
 def purchase_a_sword():
-    purchase_sword_event = {'event_type': 'purchase_sword'}
+    purchase_sword_event = {'event_type': 'purchase_sword',
+                            'sword_type': 'falchion'}
     log_to_kafka('events', purchase_sword_event)
     return "Sword Purchased!\n"
+
+@app.route("/buy_a_sword")
+def buy_a_sword():
+    buy_sword_event = {'event_type': 'buy_sword',
+                       'sword_material': 'steel'}
+    log_to_kafka('events', buy_sword_event)
+    return "Sword Bought!\n"
+
+@app.route("/join_guild")
+def join_guild():
+    join_guild_event = {'event_type': 'join_guild',
+                        'guild_name': 'mage'}
+    log_to_kafka('events', join_guild_event)
+    return "Guild Joined!\n"
+
